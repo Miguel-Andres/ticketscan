@@ -1,0 +1,38 @@
+---
+// Componente de página de inicio
+const pageTitle = "Facturas Generator Urban Logistic";
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <main class="container">
+      <h1>{pageTitle}</h1>
+    </main>
+  </body>
+</html>
+
+<style>
+  :root {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+    margin-top: 2rem;
+  }
+</style>
