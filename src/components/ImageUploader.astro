@@ -1,0 +1,150 @@
+---
+// src/components/ImageUploader.astro
+// Componente para cargar imágenes con drag & drop
+
+import { imageStore } from '../lib/imageStore';
+
+interface Props {
+  onImagesSelected?: (images: File[]) => void;
+}
+
+const { onImagesSelected } = Astro.props;
+---
+
+<div class="card">
+  <h2 class="section-title">Cargar Imágenes de Etiquetas</h2>
+  <p class="text-gray-600 mb-6">
+    Arrastra y suelta las imágenes de las etiquetas de envío o haz clic para seleccionar archivos.
+  </p>
+  
+  <!-- Área de drag & drop -->
+  <div 
+    class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer transition-colors hover:border-blue-400 hover:bg-blue-50 mb-6"
+    ondragover={(e: DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+    }}
+    ondrop={(e: DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (e.dataTransfer?.files) {
+        const files = Array.from(e.dataTransfer.files).filter(file => 
+          file.type.startsWith('image/')
+        );
+        
+        if (files.length > 0) {
+          handleImagesSelected(files);
+        }
+      }
+    }}
+  >
+    <div class="flex flex-col items-center justify-center">
+      <svg class="w-12 h-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+      </svg>
+      <p class="text-gray-600 mb-2">
+        Arrastra las imágenes aquí o haz clic para seleccionar
+      </p>
+      <p class="text-sm text-gray-500">
+        Soporta múltiples archivos (JPG, PNG, GIF)
+      </p>
+    </div>
+    
+    <!-- Input oculto para seleccionar archivos -->
+    <input 
+      type="file" 
+      id="file-input" 
+      class="hidden" 
+      multiple 
+      accept="image/*"
+      onchange={(e: Event) => {
+        const target = e.target as HTMLInputElement;
+        if (target.files) {
+          const files = Array.from(target.files);
+          if (files.length > 0) {
+            handleImagesSelected(files);
+          }
+        }
+      }}
+    />
+  </div>
+  
+  <!-- Botón para seleccionar archivos -->
+  <button 
+    class="btn-primary w-full mb-6"
+    on:click={() => {
+      const fileInput = document.getElementById('file-input');
+      if (fileInput) {
+        fileInput.click();
+      }
+    }}
+  >
+    Seleccionar Imágenes
+  </button>
+  
+  <!-- Previsualización de imágenes -->
+  <div id="image-previews" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-6">
+    <!-- Las previsualizaciones se generarán dinámicamente -->
+  </div>
+</div>
+
+<script>
+  // Función para manejar las imágenes seleccionadas
+  function handleImagesSelected(files: File[]) {
+    // Añadir imágenes al store
+    const imageIds = files.map(file => imageStore.addImage(file));
+    
+    // Generar previsualizaciones
+    generatePreviews(files, imageIds);
+    
+    // Llamar al callback si existe
+    if (onImagesSelected) {
+      onImagesSelected(files);
+    }
+  }
+  
+  // Función para generar previsualizaciones de las imágenes seleccionadas
+  function generatePreviews(files: File[], ids: string[]) {
+    const previewContainer = document.getElementById('image-previews');
+    if (previewContainer) {
+      previewContainer.innerHTML = '';
+      
+      files.forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          if (e.target && previewContainer) {
+            const previewElement = document.createElement('div');
+            previewElement.className = 'relative';
+            previewElement.dataset.imageId = ids[index];
+            
+            previewElement.innerHTML = `
+              <img src="${e.target.result}" alt="Preview" class="rounded-lg shadow-sm border border-gray-200 w-full h-32 object-cover" />
+              <div class="absolute top-1 right-1">
+                <button 
+                  class="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600 transition-colors"
+                  onclick="removeImage(this, '${ids[index]}')"
+                >
+                  ×
+                </button>
+              </div>
+            `;
+            
+            previewContainer.appendChild(previewElement);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  }
+  
+  // Función para eliminar una imagen de la previsualización y del store
+  function removeImage(button: HTMLButtonElement, id: string) {
+    const previewElement = button.closest('div.relative');
+    if (previewElement) {
+      previewElement.remove();
+      imageStore.removeImage(id);
+      console.log('Imagen eliminada');
+    }
+  }
+</script>

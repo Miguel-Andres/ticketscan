@@ -1,6 +1,7 @@
 ---
 // Página principal de la aplicación
 import Layout from '../layouts/Layout.astro';
+import ImageUploader from '../components/ImageUploader.astro';
 ---
 
 <Layout title="Inicio" description="Sistema de procesamiento de etiquetas de envío con OCR">
@@ -16,7 +17,10 @@ import Layout from '../layouts/Layout.astro';
           extraer datos importantes y generar informes PDF profesionales.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button class="btn-primary text-lg px-8 py-3">
+          <button 
+            class="btn-primary text-lg px-8 py-3"
+            id="process-images-btn"
+          >
             Procesar Imágenes
           </button>
           <a href="/historial" class="btn-secondary text-lg px-8 py-3">
@@ -27,8 +31,20 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Features Section -->
+  <!-- Image Upload Section -->
   <section class="py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ImageUploader 
+        onImagesSelected={(images) => {
+          console.log('Imágenes seleccionadas:', images);
+          // Aquí se implementará la lógica para manejar las imágenes seleccionadas
+        }} 
+      />
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="section-title">Características Principales</h2>
@@ -81,7 +97,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Quick Start Section -->
-  <section class="bg-gray-50 py-16">
+  <section class="py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="section-title">Cómo Usar el Sistema</h2>
@@ -127,3 +143,17 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 </Layout>
+
+<script>
+  // Script para manejar el botón de procesamiento de imágenes
+  document.addEventListener('DOMContentLoaded', function() {
+    const processButton = document.getElementById('process-images-btn');
+    
+    if (processButton) {
+      processButton.addEventListener('click', function() {
+        // Aquí se implementará la lógica para procesar las imágenes
+        console.log('Iniciar procesamiento de imágenes');
+      });
+    }
+  });
+</script>

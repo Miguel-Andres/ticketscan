@@ -1,0 +1,116 @@
+---
+// src/pages/procesar.astro
+// Página para procesar imágenes de etiquetas de envío
+
+import Layout from '../layouts/Layout.astro';
+import ImageUploader from '../components/ImageUploader.astro';
+import OCRResults from '../components/OCRResults.astro';
+import { imageStore } from '../lib/imageStore';
+import { ocrProcessor } from '../lib/ocrProcessor';
+import { pdfGenerator } from '../lib/pdfGenerator';
+
+import type { OCRResult } from '../lib/ocrProcessor';
+
+let ocrResults: OCRResult[] = [];
+---
+
+<Layout title="Procesar Imágenes" description="Procesamiento de etiquetas de envío con OCR">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+      <h1 class="section-title">Procesar Imágenes de Etiquetas</h1>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Sube las imágenes de las etiquetas de envío para extraer automáticamente los datos 
+        mediante OCR y generar informes PDF profesionales.
+      </p>
+    </div>
+    
+    <!-- Área de carga de imágenes -->
+    <div id="upload-area" class="mb-16">
+      <ImageUploader onImagesSelected={handleImagesSelected} />
+    </div>
+    
+    <!-- Área de previsualización y resultados -->
+    <div id="results-area" class="hidden">
+      <div class="card">
+        <h2 class="section-subtitle mb-6">Resultados del OCR</h2>
+        
+        <!-- Indicador de progreso -->
+        <div id="progress-indicator" class="mb-6">
+          <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+            <div 
+              class="bg-blue-600 h-2.5 rounded-full transition-all duration-300" 
+              style="width: 0%"
+              id="progress-bar"
+            ></div>
+          </div>
+          <p class="text-gray-600 text-center" id="progress-text">Procesando imágenes...</p>
+        </div>
+        
+        <!-- Contenedor de resultados -->
+        <div id="results-container">
+          <OCRResults results={ocrResults} onGeneratePDF={generatePDF} />
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Función para manejar las imágenes seleccionadas
+  async function handleImagesSelected(files) {
+    console.log('Imágenes seleccionadas:', files);
+    
+    // Mostrar área de resultados
+    const resultsArea = document.getElementById('results-area');
+    if (resultsArea) {
+      resultsArea.classList.remove('hidden');
+    }
+    
+    // Obtener imágenes del store
+    const images = imageStore.getAllImages();
+    
+    // Actualizar indicador de progreso
+    updateProgress(0, images.length);
+    
+    // Procesar imágenes con OCR
+    ocrResults = await ocrProcessor.processImages(images);
+    
+    // Actualizar UI con resultados
+    updateResultsUI();
+  }
+  
+  // Función para actualizar el indicador de progreso
+  function updateProgress(current, total) {
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    
+    if (progressBar && progressText) {
+      const percentage = total > 0 ? (current / total) * 100 : 0;
+      progressBar.style.width = `${percentage}%`;
+      progressText.textContent = `Procesando ${current} de ${total} imágenes...`;
+    }
+  }
+  
+  // Función para actualizar la UI con resultados
+  function updateResultsUI() {
+    // Esta función se encargará de actualizar la interfaz con los resultados del OCR
+    console.log('Resultados OCR:', ocrResults);
+  }
+  
+  // Función para generar PDF con resultados
+  async function generatePDF() {
+    try {
+      const pdfData = {
+        date: new Date().toLocaleDateString(),
+        totalImages: ocrResults.length,
+        processedImages: ocrResults.filter(r => r.status === 'completed').length,
+        results: ocrResults
+      };
+      
+      await pdfGenerator.generatePDF(pdfData);
+    } catch (error) {
+      console.error('Error generando PDF:', error);
+      alert('No se pudo generar el PDF. Por favor, inténtalo de nuevo.');
+    }
+  }
+</script>
