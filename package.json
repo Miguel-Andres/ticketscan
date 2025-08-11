@@ -2,10 +2,12 @@
   "name": "snaptag",
   "version": "1.0.0",
   "description": "Bot de Telegram para extraer texto de imágenes usando Tesseract.js",
-  "main": "src/index.js",
+  "main": "astro.config.mjs",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "node --watch src/index.js"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
   },
   "keywords": [
     "telegram",
@@ -18,5 +20,11 @@
   "type": "module",
   "dependencies": {
     "astro": "^5.12.9"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11"
   }
 }
