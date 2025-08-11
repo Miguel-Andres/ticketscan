@@ -40,12 +40,12 @@
   - [x] 1.4 Configurar Astro básico
   - [x] 1.4.1 Configurar Astro para manejar API endpoints
 
-- [ ] 2.0 Implementar Interfaz de Usuario Base
-  - [ ] 2.1 Crear componente Header con navegación
-  - [ ] 2.2 Crear Layout principal
-  - [ ] 2.3 Implementar estilos globales con paleta de colores profesional
-  - [ ] 2.4 Actualizar página de inicio con secciones principales
-  - [ ] 2.5 Crear página de historial
+- [x] 2.0 Implementar Interfaz de Usuario Base
+  - [x] 2.1 Crear componente Header con navegación
+  - [x] 2.2 Crear Layout principal
+  - [x] 2.3 Implementar estilos globales con paleta de colores profesional
+  - [x] 2.4 Actualizar página de inicio con secciones principales
+  - [x] 2.5 Crear página de historial
 
 - [ ] 3.0 Implementar Carga y Visualización de Imágenes
   - [ ] 3.1 Crear componente ImageUploader con drag & drop

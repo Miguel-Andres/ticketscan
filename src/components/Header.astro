@@ -1,0 +1,82 @@
+---
+// src/components/Header.astro
+// Componente de cabecera con navegación
+---
+
+<header class="bg-white shadow-sm border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo y título -->
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <h1 class="text-xl font-bold text-gray-900">
+            Facturas Generator Urban Logistic
+          </h1>
+        </div>
+      </div>
+
+      <!-- Navegación -->
+      <nav class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-4">
+          <a 
+            href="/" 
+            class="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+          >
+            Inicio
+          </a>
+          <a 
+            href="/historial" 
+            class="text-gray-500 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+          >
+            Historial
+          </a>
+        </div>
+      </nav>
+
+      <!-- Menú móvil (hamburguesa) -->
+      <div class="md:hidden">
+        <button 
+          type="button" 
+          class="text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900"
+          id="mobile-menu-button"
+        >
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú móvil desplegable -->
+    <div class="md:hidden hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200">
+        <a 
+          href="/" 
+          class="text-gray-900 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+        >
+          Inicio
+        </a>
+        <a 
+          href="/historial" 
+          class="text-gray-500 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+        >
+          Historial
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Script para manejar el menú móvil
+  document.addEventListener('DOMContentLoaded', function() {
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    
+    if (button && menu) {
+      button.addEventListener('click', function() {
+        menu.classList.toggle('hidden');
+      });
+    }
+  });
+</script>
