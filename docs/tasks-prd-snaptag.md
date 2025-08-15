@@ -1,88 +1,79 @@
-# Tareas para implementar el Sistema de Procesamiento de Etiquetas de Envío con OCR
+## Archivos Relevantes
 
-## Relevant Files
+- `package.json` - Metadatos del proyecto y dependencias para Astro, adaptador de Node, React y Tesseract.js.
+- `astro.config.mjs` - Configurar el adaptador de Node (`@astrojs/node`) y la integración de React (`@astrojs/react`).
+- `src/pages/index.astro` - Página principal que monta el cargador de React y muestra resultados.
+- `src/components/Header.astro` - Cabecera con un botón "BUSQUEDA" (solo visual en esta fase).
+- `src/components/ImageUploader.tsx` - Componente React para arrastrar y soltar, vista previa, eliminar y subir al API.
+- `src/pages/api/ocr.ts` - Ruta API para OCR: parsear multipart, ejecutar Tesseract (spa) y devolver JSON.
+- `src/styles/global.css` - Estilos globales y base de Tailwind si se usa.
+- `tailwind.config.js` - Configuración de Tailwind (opcional en Fase 1).
+- `postcss.config.cjs` - Configuración de PostCSS (opcional en Fase 1).
+- `README.md` - Guía de instalación y uso para desarrolladores.
 
-- `src/pages/index.astro` - Página principal de la aplicación
-- `src/components/Header.astro` - Componente de cabecera con navegación
-- `src/components/ImageUploader.astro` - Componente para cargar y previsualizar imágenes
-- `src/components/OCRProcessor.astro` - Componente para procesar imágenes con Tesseract.js
-- `src/components/ResultsViewer.astro` - Componente para mostrar y editar resultados del OCR
-- `src/components/PDFGenerator.astro` - Componente para generar informes PDF
-- `src/layouts/Layout.astro` - Layout principal de la aplicación
-- `src/styles/global.css` - Estilos globales y configuración de Tailwind CSS
-- `src/lib/db.js` - Funciones para interactuar con la base de datos PostgreSQL
-- `src/lib/ocr.js` - Funciones para procesamiento OCR con Tesseract.js
-- `src/lib/pdf.js` - Funciones para generación de PDF con jsPDF
-- `src/pages/historial.astro` - Página para consultar registros históricos
-- `src/pages/api/process-images.js` - API endpoint para procesar imágenes
-- `src/pages/api/save-results.js` - API endpoint para guardar resultados en la base de datos
-- `src/pages/api/generate-pdf.js` - API endpoint para generar PDF
-- `tailwind.config.js` - Configuración de Tailwind CSS
-- `astro.config.mjs` - Configuración de Astro
-- `database/schema.sql` - Esquema de la base de datos PostgreSQL
+### Notas
 
-### Notes
+- En la Fase 1 no hay persistencia ni generación de PDF. Los archivos deben manejarse como temporales y limpiarse.
+- Usar Tesseract.js con idioma español (`spa`) por defecto; permitir cambiar el idioma fácilmente mediante constante/variable de entorno.
+- Limitar la concurrencia del OCR si es necesario para mantener la UI fluida con ~30–50 imágenes.
+- El botón "BUSQUEDA" en la cabecera es solamente estético en esta fase.
 
-- La aplicación utilizará Astro para el frontend con componentes interactivos
-- Se utilizará Tailwind CSS para los estilos
-- Tesseract.js se usará para el OCR local
-- jsPDF para la generación de informes PDF
-- PostgreSQL para el almacenamiento de datos
+## Tareas
 
-## Tasks
+- [ ] 1.0 Configuración del proyecto y herramientas
+  - [ ] 1.1 Inicializar `package.json` y metadatos del proyecto Node
+  - [ ] 1.2 Instalar dependencias: `astro`, `@astrojs/node`, `@astrojs/react`, `react`, `react-dom`, `tesseract.js`
+  - [ ] 1.3 Agregar scripts: `dev`, `build`, `preview`
+  - [ ] 1.4 Crear `astro.config.mjs` con adaptador de Node e integración de React
+  - [ ] 1.5 Agregar `tsconfig.json` y ajustes básicos de TypeScript (estricto cuando sea razonable)
+  - [ ] 1.6 Estilos opcionales: configurar Tailwind (`tailwind.config.js`, `postcss.config.cjs`, import en `src/styles/global.css`)
+  - [ ] 1.7 Verificar que `npm run dev` inicia sin errores
 
-- [ ] 1.0 Configuración del Proyecto
-  - [ ] 1.1 Instalar dependencias (Tailwind CSS, Tesseract.js, jsPDF)
-  - [ ] 1.2 Configurar Tailwind CSS
-  - [ ] 1.3 Crear estructura de directorios (components, layouts, styles, lib)
-  - [ ] 1.4 Configurar Astro para manejar API endpoints
-  - [ ] 1.5 Crear archivo de configuración para PostgreSQL
+- [ ] 2.0 API de OCR en el backend (`POST /api/ocr`) con Tesseract.js (spa)
+  - [ ] 2.1 Crear `src/pages/api/ocr.ts` como manejador de ruta API
+  - [ ] 2.2 Parsear `multipart/form-data` desde `Request` y extraer archivos (campo `images`)
+  - [ ] 2.3 Validar tipos de archivo: jpg/jpeg/png/webp/tiff; advertir sobre archivos muy grandes
+  - [ ] 2.4 Integrar `tesseract.js` con idioma `spa`; precargar worker si aplica
+  - [ ] 2.5 Procesar imágenes secuencialmente o con concurrencia limitada (configurable)
+  - [ ] 2.6 Construir y devolver JSON `{ results: [...], errors: [...] }` según el ejemplo del PRD
+  - [ ] 2.7 Añadir manejo de errores robusto y códigos HTTP; no persistir archivos más allá del ciclo de la petición
+  - [ ] 2.8 Registrar tiempos de proceso para apoyar el ajuste de rendimiento (solo dev)
 
-- [ ] 2.0 Implementar Interfaz de Usuario Base
-  - [ ] 2.1 Crear componente Header con navegación
-  - [ ] 2.2 Crear Layout principal
-  - [ ] 2.3 Implementar estilos globales con paleta de colores profesional
-  - [ ] 2.4 Actualizar página de inicio con secciones principales
-  - [ ] 2.5 Crear página de historial
+- [ ] 3.0 Fundamentos de frontend (Astro + integración React) y estilos globales
+  - [ ] 3.1 Crear `src/pages/index.astro` con layout base y punto de montaje para el cargador React
+  - [ ] 3.2 Agregar `src/components/Header.astro` con un botón "BUSQUEDA" (sin acción)
+  - [ ] 3.3 Crear e importar `src/styles/global.css` (o base de Tailwind)
+  - [ ] 3.4 Asegurar que el island de React funciona mediante un componente simple de prueba
 
-- [ ] 3.0 Implementar Carga y Visualización de Imágenes
-  - [ ] 3.1 Crear componente ImageUploader con drag & drop
-  - [ ] 3.2 Implementar previsualización de imágenes cargadas
-  - [ ] 3.3 Añadir funcionalidad para eliminar imágenes antes de procesar
-  - [ ] 3.4 Implementar almacenamiento temporal de imágenes
-  - [ ] 3.5 Añadir indicadores de progreso para la carga
+- [ ] 4.0 Cargador de imágenes en React (arrastrar y soltar, vista previa, eliminar, subir con progreso)
+  - [ ] 4.1 Crear andamiaje de `src/components/ImageUploader.tsx` con React/TSX
+  - [ ] 4.2 Implementar área de arrastrar y soltar + input múltiple; aceptar solo tipos MIME permitidos
+  - [ ] 4.3 Mostrar vistas previas (miniatura o nombre de archivo) y permitir eliminar antes de subir
+  - [ ] 4.4 Construir `FormData` (`images`) y hacer POST a `/api/ocr`
+  - [ ] 4.5 Mostrar progreso por imagen (lado cliente) mientras se espera el procesamiento del servidor
+  - [ ] 4.6 Manejar la respuesta del servidor y mapear resultados/errores a cada tarjeta de imagen
+  - [ ] 4.7 Gestionar estados: pendiente, procesando, completado, error
 
-- [ ] 4.0 Implementar Procesamiento OCR
-  - [ ] 4.1 Integrar Tesseract.js para OCR
-  - [ ] 4.2 Crear funciones para extraer datos específicos (cliente, venta, envío, etc.)
-  - [ ] 4.3 Implementar procesamiento por lotes
-  - [ ] 4.4 Añadir indicadores de progreso para el procesamiento
-  - [ ] 4.5 Crear endpoint API para procesamiento OCR
+- [ ] 5.0 UI de resultados: mostrar texto OCR por imagen y estados (pendiente/procesando/completado/error)
+  - [ ] 5.1 Crear diseño de tarjetas para cada imagen con nombre de archivo y texto OCR
+  - [ ] 5.2 Añadir copiar-al-portapapeles para el texto extraído
+  - [ ] 5.3 Manejar texto largo: expandir/contraer
+  - [ ] 5.4 Estado visual de error para OCR fallido con mensaje
 
-- [ ] 5.0 Implementar Visualización y Edición de Resultados
-  - [ ] 5.1 Crear componente ResultsViewer para mostrar datos extraídos
-  - [ ] 5.2 Implementar edición de datos extraídos incorrectamente
-  - [ ] 5.3 Añadir opción para reprocesar imágenes específicas
-  - [ ] 5.4 Implementar validación de datos
-  - [ ] 5.5 Crear endpoint API para guardar resultados editados
+- [ ] 6.0 Validaciones básicas, manejo de errores y limpieza de temporales
+  - [ ] 6.1 Validación en cliente para tipo de archivo y advertencia opcional por tamaño
+  - [ ] 6.2 Guardas en servidor: limitar número de archivos por solicitud; manejar payloads vacíos
+  - [ ] 6.3 Asegurar liberación de buffers/streams temporales; sin persistencia en disco
+  - [ ] 6.4 Añadir manejo de timeout/abort para evitar solicitudes colgadas
 
-- [ ] 6.0 Implementar Generación de PDF
-  - [ ] 6.1 Integrar jsPDF para generación de informes
-  - [ ] 6.2 Crear plantilla de informe con datos extraídos
-  - [ ] 6.3 Implementar cálculo de precios según localidad/código postal
-  - [ ] 6.4 Añadir opción para descargar PDF
-  - [ ] 6.5 Crear endpoint API para generación de PDF
+- [ ] 7.0 QA local con ~30–50 imágenes y captura de métricas; ajustes de rendimiento
+  - [ ] 7.1 Preparar un set de imágenes de etiquetas (calidad variada)
+  - [ ] 7.2 Medir tiempo de proceso y tasa de éxito; anotar observaciones de precisión
+  - [ ] 7.3 Ajustar concurrencia y uso de memoria si es necesario; verificar estabilidad
+  - [ ] 7.4 Corregir bugs encontrados; re-probar hasta estabilizar
 
-- [ ] 7.0 Implementar Almacenamiento en Base de Datos
-  - [ ] 7.1 Crear esquema de base de datos PostgreSQL
-  - [ ] 7.2 Implementar funciones para guardar datos en la base de datos
-  - [ ] 7.3 Implementar funciones para consultar datos históricos
-  - [ ] 7.4 Crear endpoint API para consultas por cliente y fecha
-  - [ ] 7.5 Implementar almacenamiento de referencias a imágenes
-
-- [ ] 8.0 Pruebas y Optimización
-  - [ ] 8.1 Realizar pruebas de precisión del OCR con etiquetas reales
-  - [ ] 8.2 Optimizar rendimiento del procesamiento por lotes
-  - [ ] 8.3 Verificar tiempos de respuesta de consultas a la base de datos
-  - [ ] 8.4 Probar generación de PDF con diferentes cantidades de datos
-  - [ ] 8.5 Realizar ajustes finales de interfaz de usuario
+- [ ] 8.0 Documentación: README guía rápida, configuración y uso
+  - [ ] 8.1 Escribir `README.md` con pasos de instalación y comandos
+  - [ ] 8.2 Documentar cómo ejecutar la app, subir imágenes e interpretar resultados
+  - [ ] 8.3 Listar restricciones (sin PDF, sin persistencia) y próximos pasos planeados (Fase 2)
+  - [ ] 8.4 Añadir sección de resolución de problemas (issues comunes de OCR, consejos de rendimiento)
