@@ -27,32 +27,32 @@
   - [x] 1.4 Crear `astro.config.mjs` con adaptador de Node e integración de React
   - [x] 1.5 Agregar `tsconfig.json` y ajustes básicos de TypeScript (estricto cuando sea razonable)
   - [x] 1.6 Estilos opcionales: configurar Tailwind (`tailwind.config.js`, `postcss.config.cjs`, import en `src/styles/global.css`)
-  - [ ] 1.7 Verificar que `npm run dev` inicia sin errores
+  - [x] 1.7 Verificar que `npm run dev` inicia sin errores
 
-- [ ] 2.0 API de OCR en el backend (`POST /api/ocr`) con Tesseract.js (spa)
-  - [ ] 2.1 Crear `src/pages/api/ocr.ts` como manejador de ruta API
-  - [ ] 2.2 Parsear `multipart/form-data` desde `Request` y extraer archivos (campo `images`)
-  - [ ] 2.3 Validar tipos de archivo: jpg/jpeg/png/webp/tiff; advertir sobre archivos muy grandes
-  - [ ] 2.4 Integrar `tesseract.js` con idioma `spa`; precargar worker si aplica
-  - [ ] 2.5 Procesar imágenes secuencialmente o con concurrencia limitada (configurable)
-  - [ ] 2.6 Construir y devolver JSON `{ results: [...], errors: [...] }` según el ejemplo del PRD
-  - [ ] 2.7 Añadir manejo de errores robusto y códigos HTTP; no persistir archivos más allá del ciclo de la petición
-  - [ ] 2.8 Registrar tiempos de proceso para apoyar el ajuste de rendimiento (solo dev)
+- [x] 2.0 API de OCR en el backend (`POST /api/ocr`) con Tesseract.js (spa)
+  - [x] 2.1 Crear `src/pages/api/ocr.ts` como manejador de ruta API
+  - [x] 2.2 Parsear `multipart/form-data` desde `Request` y extraer archivos (campo `images`)
+  - [x] 2.3 Validar tipos de archivo: jpg/jpeg/png/webp/tiff; advertir sobre archivos muy grandes
+  - [x] 2.4 Integrar `tesseract.js` con idioma `spa`; precargar worker si aplica
+  - [x] 2.5 Procesar imágenes secuencialmente o con concurrencia limitada (configurable)
+  - [x] 2.6 Construir y devolver JSON `{ results: [...], errors: [...] }` según el ejemplo del PRD
+  - [x] 2.7 Añadir manejo de errores robusto y códigos HTTP; no persistir archivos más allá del ciclo de la petición
+  - [x] 2.8 Registrar tiempos de proceso para apoyar el ajuste de rendimiento (solo dev)
 
-- [ ] 3.0 Fundamentos de frontend (Astro + integración React) y estilos globales
-  - [ ] 3.1 Crear `src/pages/index.astro` con layout base y punto de montaje para el cargador React
-  - [ ] 3.2 Agregar `src/components/Header.astro` con un botón "BUSQUEDA" (sin acción)
-  - [ ] 3.3 Crear e importar `src/styles/global.css` (o base de Tailwind)
-  - [ ] 3.4 Asegurar que el island de React funciona mediante un componente simple de prueba
+- [x] 3.0 Fundamentos de frontend (Astro + integración React) y estilos globales
+  - [x] 3.1 Crear `src/pages/index.astro` con layout base y punto de montaje para el cargador React
+  - [x] 3.2 Agregar `src/components/Header.astro` con un botón "BUSQUEDA" (sin acción)
+  - [x] 3.3 Crear e importar `src/styles/global.css` (o base de Tailwind)
+  - [x] 3.4 Asegurar que el island de React funciona mediante un componente simple de prueba
 
-- [ ] 4.0 Cargador de imágenes en React (arrastrar y soltar, vista previa, eliminar, subir con progreso)
-  - [ ] 4.1 Crear andamiaje de `src/components/ImageUploader.tsx` con React/TSX
-  - [ ] 4.2 Implementar área de arrastrar y soltar + input múltiple; aceptar solo tipos MIME permitidos
-  - [ ] 4.3 Mostrar vistas previas (miniatura o nombre de archivo) y permitir eliminar antes de subir
-  - [ ] 4.4 Construir `FormData` (`images`) y hacer POST a `/api/ocr`
-  - [ ] 4.5 Mostrar progreso por imagen (lado cliente) mientras se espera el procesamiento del servidor
-  - [ ] 4.6 Manejar la respuesta del servidor y mapear resultados/errores a cada tarjeta de imagen
-  - [ ] 4.7 Gestionar estados: pendiente, procesando, completado, error
+- [x] 4.0 Cargador de imágenes en React (arrastrar y soltar, vista previa, eliminar, subir con progreso)
+  - [x] 4.1 Crear andamiaje de `src/components/ImageUploader.tsx` con React/TSX
+  - [x] 4.2 Implementar área de arrastrar y soltar + input múltiple; aceptar solo tipos MIME permitidos
+  - [x] 4.3 Mostrar vistas previas (miniatura o nombre de archivo) y permitir eliminar antes de subir
+  - [x] 4.4 Construir `FormData` (`images`) y hacer POST a `/api/ocr`
+  - [x] 4.5 Mostrar progreso por imagen (lado cliente) mientras se espera el procesamiento del servidor
+  - [x] 4.6 Manejar la respuesta del servidor y mapear resultados/errores a cada tarjeta de imagen
+  - [x] 4.7 Gestionar estados: pendiente, procesando, completado, error
 
 - [ ] 5.0 UI de resultados: mostrar texto OCR por imagen y estados (pendiente/procesando/completado/error)
   - [ ] 5.1 Crear diseño de tarjetas para cada imagen con nombre de archivo y texto OCR
