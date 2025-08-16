@@ -1,0 +1,38 @@
+{
+  "name": "snaptag",
+  "version": "0.1.0",
+  "description": "Aplicación web para extraer texto de etiquetas mediante OCR",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [
+    "ocr",
+    "tesseract",
+    "astro",
+    "react"
+  ],
+  "dependencies": {
+    "astro": "4.5.0",
+    "@astrojs/node": "8.2.0",
+    "@astrojs/react": "3.0.10",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tesseract.js": "5.0.4",
+    "formidable": "3.5.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@types/node": "^20.11.17",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.35",
+    "autoprefixer": "^10.4.17"
+  },
+  "author": "",
+  "license": "MIT"
+}

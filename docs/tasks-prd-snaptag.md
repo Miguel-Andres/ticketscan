@@ -20,13 +20,13 @@
 
 ## Tareas
 
-- [ ] 1.0 Configuración del proyecto y herramientas
-  - [ ] 1.1 Inicializar `package.json` y metadatos del proyecto Node
-  - [ ] 1.2 Instalar dependencias: `astro`, `@astrojs/node`, `@astrojs/react`, `react`, `react-dom`, `tesseract.js`
-  - [ ] 1.3 Agregar scripts: `dev`, `build`, `preview`
-  - [ ] 1.4 Crear `astro.config.mjs` con adaptador de Node e integración de React
-  - [ ] 1.5 Agregar `tsconfig.json` y ajustes básicos de TypeScript (estricto cuando sea razonable)
-  - [ ] 1.6 Estilos opcionales: configurar Tailwind (`tailwind.config.js`, `postcss.config.cjs`, import en `src/styles/global.css`)
+- [x] 1.0 Configuración del proyecto y herramientas
+  - [x] 1.1 Inicializar `package.json` y metadatos del proyecto Node
+  - [x] 1.2 Instalar dependencias: `astro`, `@astrojs/node`, `@astrojs/react`, `react`, `react-dom`, `tesseract.js`
+  - [x] 1.3 Agregar scripts: `dev`, `build`, `preview`
+  - [x] 1.4 Crear `astro.config.mjs` con adaptador de Node e integración de React
+  - [x] 1.5 Agregar `tsconfig.json` y ajustes básicos de TypeScript (estricto cuando sea razonable)
+  - [x] 1.6 Estilos opcionales: configurar Tailwind (`tailwind.config.js`, `postcss.config.cjs`, import en `src/styles/global.css`)
   - [ ] 1.7 Verificar que `npm run dev` inicia sin errores
 
 - [ ] 2.0 API de OCR en el backend (`POST /api/ocr`) con Tesseract.js (spa)
