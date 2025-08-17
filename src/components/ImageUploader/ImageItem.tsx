@@ -1,5 +1,5 @@
 import React from 'react';
-import type { UploadedImage } from '../../../types/imageUploader';
+import type { UploadedImage } from '../../types/imageUploader';
 
 interface ImageItemProps {
   image: UploadedImage;

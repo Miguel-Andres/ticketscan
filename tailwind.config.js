@@ -3,6 +3,63 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      fontFamily: {
+        // Prioriza Neue Haas Grotesk / Helvetica Now si existen en el sistema
+        sans: [
+          'Neue Haas Grotesk Text',
+          'Neue Haas Grotesk Display',
+          'Helvetica Now Text',
+          'Helvetica Now Display',
+          'Helvetica Neue',
+          'Helvetica',
+          'Inter',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'Oxygen',
+          'Ubuntu',
+          'Cantarell',
+          'Open Sans',
+          'sans-serif',
+        ],
+        bebas: [
+          'Bebas Neue',
+          'Helvetica Neue',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
+        playfair: [
+          'Playfair Display',
+          'Georgia',
+          'Times New Roman',
+          'serif',
+        ],
+        inter: [
+          'Inter',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'Helvetica Neue',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
+        manrope: [
+          'Manrope',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'Inter',
+          'Helvetica Neue',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
+      },
       colors: {
         primary: {
           50: '#f0f9ff',

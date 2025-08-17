@@ -1,7 +1,7 @@
 import React from 'react';
-import type { UploadedImage } from '../../../types/imageUploader';
+import type { UploadedImage } from '../../types/imageUploader';
 import ImageItem from './ImageItem';
-import { MAX_FILES } from '../../../utils/constants';
+import { MAX_FILES } from '../../utils/constants';
 
 interface ImageListProps {
   images: UploadedImage[];
