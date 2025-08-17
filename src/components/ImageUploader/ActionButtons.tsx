@@ -26,7 +26,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
           disabled={isProcessing || !hasPendingImages}
           className="btn btn-primary disabled:opacity-50"
         >
-          {isProcessing ? 'Procesando...' : 'Procesar con OCR'}
+          {isProcessing ? 'Procesando...' : 'Procesar '}
         </button>
         <button
           onClick={clearAll}

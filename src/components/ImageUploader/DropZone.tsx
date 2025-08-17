@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { ALLOWED_MIME_TYPES } from '../../../utils/constants';
+import { ALLOWED_MIME_TYPES } from '../../utils/constants';
 
 interface DropZoneProps {
   isDragOver: boolean;
