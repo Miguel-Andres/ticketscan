@@ -35,16 +35,41 @@ interface OCRResponse {
   totalProcessingTimeMs: number;
 }
 
+// Pool de workers de Tesseract para reutilización
+let workerPool: any[] = [];
+const MAX_WORKER_POOL_SIZE = 2; // Tamaño máximo del pool
+
+// Función para obtener un worker del pool o crear uno nuevo
+async function getWorker() {
+  if (workerPool.length > 0) {
+    return workerPool.pop();
+  }
+  return await createWorker(TESSERACT_LANGUAGE);
+}
+
+// Función para devolver un worker al pool
+async function releaseWorker(worker: any) {
+  if (workerPool.length < MAX_WORKER_POOL_SIZE) {
+    workerPool.push(worker);
+  } else {
+    await worker.terminate();
+  }
+}
+
 // Función para procesar una imagen con Tesseract
 async function processImage(file: formidable.File): Promise<OCRResult> {
   const startTime = Date.now();
+  let worker;
   
   try {
-    // Crear un worker de Tesseract con configuración optimizada
-    const worker = await createWorker(TESSERACT_LANGUAGE);
+    // Obtener un worker del pool o crear uno nuevo
+    worker = await getWorker();
     
     // Configurar parámetros para mejorar reconocimiento de etiquetas de envío
     await worker.setParameters({
+      // PSM 6: Assume a single uniform block of text (mejora segmentación en etiquetas con líneas alineadas)
+      // Referencia: https://tesseract-ocr.github.io/tessdoc/ImproveQuality#page-segmentation-method
+      tessedit_pageseg_mode: '6',
       tessedit_char_whitelist: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ÁÉÍÓÚáéíóúÑñ .,:-/',
       preserve_interword_spaces: '1',
       tessedit_do_invert: '0',
@@ -54,11 +79,8 @@ async function processImage(file: formidable.File): Promise<OCRResult> {
     // Procesar la imagen
     const { data } = await worker.recognize(file.filepath);
     
-    // Liberar el worker
-    await worker.terminate();
-    
-    // Eliminar el archivo temporal
-    fs.unlinkSync(file.filepath);
+    // Eliminar el archivo temporal de forma asíncrona
+    await fs.promises.unlink(file.filepath).catch(() => {});
     
     const processingTimeMs = Date.now() - startTime;
     
@@ -76,13 +98,13 @@ async function processImage(file: formidable.File): Promise<OCRResult> {
     };
   } catch (error) {
     // Asegurarse de eliminar el archivo temporal incluso en caso de error
-    try {
-      fs.unlinkSync(file.filepath);
-    } catch (e) {
-      // Ignorar errores al eliminar
-    }
-    
+    fs.promises.unlink(file.filepath).catch(() => {});
     throw error;
+  } finally {
+    // Devolver el worker al pool si existe
+    if (worker) {
+      await releaseWorker(worker);
+    }
   }
 }
 
@@ -126,11 +148,9 @@ export const POST: APIRoute = async ({ request }) => {
   console.log(`[OCR API] Recibida solicitud a las ${new Date().toISOString()}`);
   
   try {
-    // Crear directorio temporal si no existe
+    // Crear directorio temporal si no existe de forma asíncrona
     const tmpDir = path.join(process.cwd(), 'tmp');
-    if (!fs.existsSync(tmpDir)) {
-      fs.mkdirSync(tmpDir, { recursive: true });
-    }
+    await fs.promises.mkdir(tmpDir, { recursive: true }).catch(() => {});
     
     // Obtener FormData del request
     const formData = await request.formData();
@@ -156,10 +176,10 @@ export const POST: APIRoute = async ({ request }) => {
         const tempFileName = `upload_${Date.now()}_${Math.random().toString(36).substr(2, 9)}${fileExtension}`;
         const tempFilePath = path.join(tmpDir, tempFileName);
         
-        // Escribir archivo al disco
+        // Escribir archivo al disco de forma asíncrona
         const arrayBuffer = await value.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
-        fs.writeFileSync(tempFilePath, buffer);
+        await fs.promises.writeFile(tempFilePath, buffer);
         
         // Crear objeto File compatible con formidable
         const fileObj: formidable.File = {
