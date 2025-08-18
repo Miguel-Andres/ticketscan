@@ -13,6 +13,8 @@ Aplicación web con frontend en Astro (componentes React) que permite cargar im�
 - Como usuario, quiero cargar múltiples imágenes para ver el texto extraído por cada una.
 - Como usuario, quiero ver una barra/indicador de progreso mientras se procesa el lote.
 - Como usuario, quiero revisar el texto extraído antes de hacer cualquier acción futura (p. ej., generar PDF).
+- Como usuario, quiero reintentar el OCR en una imagen para mejorar el resultado.
+- Como usuario, quiero hacer click en la miniatura de una imagen para verla en tamaño completo.
 - (Futuro) Como usuario, quiero generar un PDF solo con los textos aceptados por mí.
 
 ## 4. Requisitos Funcionales
@@ -21,7 +23,9 @@ Aplicación web con frontend en Astro (componentes React) que permite cargar im�
 3. Backend (Node): procesar imágenes con Tesseract.js (idioma `spa`) y devolver JSON con el texto por imagen.
 4. Mostrar resultados en la UI y permitir revisión visual del texto (sin persistencia).
 5. Indicadores de progreso por imagen (y/o global) durante el OCR.
-6. (Futuro) Botón "Generar PDF" visible pero deshabilitado, o movido a Fase 2.
+6. Permitir reintento por imagen aplicando pipeline de preprocesamiento alternativo y mostrar nuevo resultado.
+7. Modal/portal para visualizar imagen completa al hacer click en miniatura.
+8. (Futuro) Botón "Generar PDF" visible pero deshabilitado, o movido a Fase 2.
 
 ## 5. Fuera de Alcance (Fase 1)
 - Generación de PDF (se define el flujo futuro, no se implementa ahora).
@@ -42,10 +46,13 @@ Aplicación web con frontend en Astro (componentes React) que permite cargar im�
   - Astro + `@astrojs/react` + React/TSX para el componente `ImageUploader`.
   - Envío a `/api/ocr` con `fetch` y `FormData` (campo `images`).
   - Gestión de progreso por imagen; UI reactiva para estados (pendiente/procesando/completado/error).
+  - Botón "Reintentar" por imagen con pipeline de preprocesamiento alternativo.
+  - Modal/portal para visualización de imagen completa (React Portal + estado global).
 - Backend:
   - Node (adapter `@astrojs/node`). Endpoint `POST /api/ocr`.
   - Tesseract.js con idioma `spa` por defecto.
   - Procesamiento secuencial o con concurrencia limitada para ~30 imágenes.
+  - Pipeline alternativo de preprocesamiento para reintentos (PSM/whitelist parametrizables).
   - No persistir ni conservar archivos: uso de temporales y limpieza tras procesar.
   - Respuesta JSON por lote, ejemplo:
     ```json
@@ -76,6 +83,7 @@ Aplicación web con frontend en Astro (componentes React) que permite cargar im�
 - PDF: tras revisión/aceptación manual, generar PDF con los textos validados por imagen.
 - Persistencia: almacenar resultados (y opcionalmente referencias de imágenes) en Supabase.
 - Consultas históricas: por cliente/fecha.
+- **Interpretación IA de texto OCR (Opción B1)**: integrar OpenAI API para interpretar y limpiar texto extraído por Tesseract, corrigiendo errores de reconocimiento y extrayendo datos estructurados con alta precisión (~95%). Costo estimado: $0.001 por imagen.
 - Mejoras de extracción de campos y validaciones.
 
 ## 11. Despliegue / Entorno

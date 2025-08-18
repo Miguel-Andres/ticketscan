@@ -45,7 +45,13 @@ const DropZone: React.FC<DropZoneProps> = ({
         </p>
         <button
           type="button"
-          onClick={() => fileInputRef.current?.click()}
+          onClick={() => {
+            // Asegurar que el input está limpio antes de abrirlo
+            if (fileInputRef.current) {
+              fileInputRef.current.value = '';
+              fileInputRef.current.click();
+            }
+          }}
           className="btn btn-primary"
         >
           Seleccionar múltiples archivos (hasta 50)
@@ -57,8 +63,12 @@ const DropZone: React.FC<DropZoneProps> = ({
           ref={fileInputRef}
           type="file"
           multiple
-          accept="image/*,.jpg,.jpeg,.png,.webp,.tiff"
+          accept="image/jpeg,image/jpg,image/png,image/webp,image/tiff,.jpg,.jpeg,.png,.webp,.tiff"
           onChange={handleFileSelect}
+          onClick={(e) => {
+            // Asegurar que el evento click se propaga correctamente
+            e.stopPropagation();
+          }}
           className="hidden"
         />
       </div>

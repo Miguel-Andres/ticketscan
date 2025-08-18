@@ -22,7 +22,8 @@ const ImageList: React.FC<ImageListProps> = ({ images, removeImage }) => {
             <ImageItem 
               key={image.id} 
               image={image} 
-              removeImage={removeImage} 
+              removeImage={removeImage}
+              allImages={images}
             />
           ))}
         </div>

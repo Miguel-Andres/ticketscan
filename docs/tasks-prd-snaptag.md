@@ -54,17 +54,17 @@
   - [x] 4.6 Manejar la respuesta del servidor y mapear resultados/errores a cada tarjeta de imagen
   - [x] 4.7 Gestionar estados: pendiente, procesando, completado, error
 
-- [ ] 5.0 UI de resultados: mostrar texto OCR por imagen y estados (pendiente/procesando/completado/error)
-  - [ ] 5.1 Crear diseño de tarjetas para cada imagen con nombre de archivo y texto OCR
-  - [ ] 5.2 Añadir copiar-al-portapapeles para el texto extraído
-  - [ ] 5.3 Manejar texto largo: expandir/contraer
-  - [ ] 5.4 Estado visual de error para OCR fallido con mensaje
+- [x] 5.0 UI de resultados: mostrar texto OCR por imagen y estados (pendiente/procesando/completado/error)
+  - [x] 5.1 Crear diseño de tarjetas para cada imagen con nombre de archivo y texto OCR
+  - [x] 5.2 Añadir copiar-al-portapapeles para el texto extraído
+  - [x] 5.3 Manejar texto largo: expandir/contraer
+  - [x] 5.4 Estado visual de error para OCR fallido con mensaje
 
-- [ ] 6.0 Validaciones básicas, manejo de errores y limpieza de temporales
-  - [ ] 6.1 Validación en cliente para tipo de archivo y advertencia opcional por tamaño
-  - [ ] 6.2 Guardas en servidor: limitar número de archivos por solicitud; manejar payloads vacíos
-  - [ ] 6.3 Asegurar liberación de buffers/streams temporales; sin persistencia en disco
-  - [ ] 6.4 Añadir manejo de timeout/abort para evitar solicitudes colgadas
+- [x] 6.0 Validaciones básicas, manejo de errores y limpieza de temporales
+  - [x] 6.1 Validación en cliente para tipo de archivo y advertencia opcional por tamaño
+  - [x] 6.2 Guardas en servidor: limitar número de archivos por solicitud; manejar payloads vacíos
+  - [x] 6.3 Asegurar liberación de buffers/streams temporales; sin persistencia en disco
+  - [x] 6.4 Añadir manejo de timeout/abort para evitar solicitudes colgadas
 
 - [ ] 7.0 QA local con ~30–50 imágenes y captura de métricas; ajustes de rendimiento
   - [ ] 7.1 Preparar un set de imágenes de etiquetas (calidad variada)
@@ -72,8 +72,34 @@
   - [ ] 7.3 Ajustar concurrencia y uso de memoria si es necesario; verificar estabilidad
   - [ ] 7.4 Corregir bugs encontrados; re-probar hasta estabilizar
 
-- [ ] 8.0 Documentación: README guía rápida, configuración y uso
-  - [ ] 8.1 Escribir `README.md` con pasos de instalación y comandos
-  - [ ] 8.2 Documentar cómo ejecutar la app, subir imágenes e interpretar resultados
-  - [ ] 8.3 Listar restricciones (sin PDF, sin persistencia) y próximos pasos planeados (Fase 2)
-  - [ ] 8.4 Añadir sección de resolución de problemas (issues comunes de OCR, consejos de rendimiento)
+- [ ] 8.0 Reintento OCR con pipeline alternativo
+  - [ ] 8.1 Crear endpoint `/api/ocr/retry` que acepte imagen individual y parámetros
+  - [ ] 8.2 Implementar pipeline alternativo de preprocesamiento (PSM 6, whitelist ajustada)
+  - [ ] 8.3 Comparar confianza entre resultado original y reintento; devolver mejor
+  - [ ] 8.4 Agregar botón "Reintentar" por imagen en ImageItem.tsx
+  - [ ] 8.5 Manejar estado de reintento (loading, merge de resultados)
+
+- [x] 9.0 Modal de visualización de imagen completa
+  - [x] 9.1 Crear componente ImageModal.tsx con React Portal
+  - [x] 9.2 Implementar estado global para modal (Context o prop drilling)
+  - [x] 9.3 Agregar click handler en miniatura de ImageItem.tsx
+  - [x] 9.4 Estilos responsive para modal (overlay, imagen centrada, botón cerrar)
+  - [x] 9.5 Navegación entre imágenes con teclado (opcional)
+
+- [ ] 10.0 Documentación: README guía rápida, configuración y uso
+  - [ ] 10.1 Escribir `README.md` con pasos de instalación y comandos
+  - [ ] 10.2 Documentar cómo ejecutar la app, subir imágenes e interpretar resultados
+  - [ ] 10.3 Listar restricciones (sin PDF, sin persistencia) y próximos pasos planeados (Fase 2)
+  - [ ] 10.4 Añadir sección de resolución de problemas (issues comunes de OCR, consejos de rendimiento)
+
+- [ ] 11.0 Interpretación IA de texto OCR (Opción B1 - Tesseract + OpenAI)
+  - [ ] 11.1 Configurar integración con OpenAI API (variables de entorno, cliente)
+  - [ ] 11.2 Crear endpoint `/api/interpret` para procesar texto OCR con IA
+  - [ ] 11.3 Diseñar prompt específico para etiquetas Envío Flex argentinas
+  - [ ] 11.4 Implementar servicio `AITextInterpreter` con manejo de errores y reintentos
+  - [ ] 11.5 Crear tipos TypeScript para respuesta estructurada de IA
+  - [ ] 11.6 Integrar interpretación IA en pipeline OCR existente (opcional/configurable)
+  - [ ] 11.7 Añadir límites de costo y monitoreo de uso de API
+  - [ ] 11.8 Modificar frontend para mostrar datos interpretados por IA
+  - [ ] 11.9 Crear tests con ejemplos reales de texto OCR sucio
+  - [ ] 11.10 Documentar configuración y uso de la interpretación IA
