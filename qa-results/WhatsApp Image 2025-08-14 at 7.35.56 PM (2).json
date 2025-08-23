@@ -1,0 +1,42 @@
+{
+  "default": {
+    "rawText": "¡ PackID:2000008800256497 — Record esto — DS ue. Ta]\n: que tu poquete viaje seguro.\n[o E\n! (Q Funda Heart Love Para Xioami Redmi Note 14 - i\n! 1 “Pro Plus Elec Heart Love i\n1 Unidad |\n> Enrique Jose Torres Mago 4507347955 Y\n=y Calle Paraguay 4353\nPalermo CP1425 |\nPack 1D: 2000008800256497 Envio: 45315621930\nE o A a\nEnvío Flex\nEntrega: 11-Ago.\nESTE\nmA\n, CTE del. CP: 1722\nE o MERLO\n— AE MERLO\nVean\n[DAA\na a\nRESIDENCIAL\nE ai LS\nDireccion: Ramón Lista 2183\nReferencia: Referencia: Entre briand y virrey del pino\nBarrio: Merlo\nDestinatario: Aldana Vargas (VAAL4722775)\n| |\n'\nl\n==\n. N\n",
+    "processedText": "¡ PackID:2000008800256497 — Record esto — DS ue. Ta] : que tu poquete viaje seguro. [o E ! (Q Funda Heart Love Para Xioami Redmi Note 14 - i ! 1 “Pro Plus Elec Heart Love i 1 Unidad | > Enrique Jose Torres Mago 4507347955 Y =y Calle Paraguay 4353 Palermo CP1425 | Pack 1D: 2000008800256497 Envio: 45315621930 E o A a Envío Flex Entrega: 11-Ago. ESTE mA , CTE del. CP: 1722 E o MERLO — AE MERLO Vean [DAA a a RESIDENCIAL E ai LS Direccion: Ramón Lista 2183 Referencia: Referencia: Entre briand y virrey del pino Barrio: Merlo Destinatario: Aldana Vargas (VAAL4722775) | | ' l == . N",
+    "confidence": 62,
+    "processingTimeMs": 1297,
+    "extractedFields": {
+      "numeroEnvio": null,
+      "numeroPaquete": null,
+      "destinatario": null,
+      "direccion": null,
+      "codigoPostal": "1425",
+      "localidad": null,
+      "fechaEntrega": null,
+      "tipoEnvio": null,
+      "referencias": null
+    },
+    "extractedFieldsCount": 1,
+    "originalLines": 33,
+    "processedLines": 1
+  },
+  "optimized": {
+    "rawText": "Pack1D:2000008800256497\n\n(QFundaHeartLoveParaXioamiRedmiNote14.\n1 _ProPlusBlackeart Love\n\n: Unidad\n\nEnriqueJoseTorresMago4507347955\nY\n\nCalleParaguay4353\n\nPalermo.CP1425\nPack1D:2000008800256497_Envio:45315621930\n\nEnvíoFlex\nEntrega: 11-Ago.\n\nCP:1722\nMERLO\nMERLO\n\nRESIDENCIAL\n\nDireccion:RamónLista2183\nReferencia:Referencia:Entrebriandy virreydelpino\nBarrio:MMerlo\n\nDestinatario:AldanaVargas (VAAL4722775)\n\n",
+    "processedText": "Pack1D:2000008800256497 (QFundaHeartLoveParaXioamiRedmiNote14. 1 _ProPlusBlackeart Love : Unidad EnriqueJoseTorresMago4507347955 Y CalleParaguay4353 Palermo.CP1425 Pack1D:2000008800256497_Envio:45315621930 EnvíoFlex Entrega: 11-Ago. CP:1722 MERLO MERLO RESIDENCIAL Direccion:RamónLista2183 Referencia:Referencia:Entrebriandy virreydelpino Barrio:MMerlo Destinatario:AldanaVargas (VAAL4722775)",
+    "confidence": 58,
+    "processingTimeMs": 616,
+    "extractedFields": {
+      "numeroEnvio": null,
+      "numeroPaquete": null,
+      "destinatario": null,
+      "direccion": null,
+      "codigoPostal": "1425",
+      "localidad": null,
+      "fechaEntrega": null,
+      "tipoEnvio": null,
+      "referencias": null
+    },
+    "extractedFieldsCount": 1,
+    "originalLines": 31,
+    "processedLines": 1
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "default": {
+    "rawText": "— _— y Py\n— Poco, 200000880 203354, Becortó esta 16 e o elíquero E *\ní e pos \"eje seg Í |.\nE 1 o As Ue Love Sillcona paro Samsung í y\n: Olor: RED, E. 7 H\n: a Nombre, de mm H\n: nidag H\nEnrique Jose Torres Mago 507347055 s E N\nCalle Paraguay 4353\nPalermo cp 1425\nPack ip. O0008R0 20 Envio; “536169807\nEn i\nL\nElia Pa Y\n7 mA CP:1778\n“E Le\nE : LA MATANZA sp\nA TES CIUDAD EvrrA Y “a\ne “E\nPAT\nA |\n|| Direccion: Calle el Ruiseñor 4081\nReferencia: Pp a Referencia: Planta Baja A |\n| Re: : |\nBarrio:\n; 552\ntinatario: Valeria Coria (COVa76s >\nDesi\n",
+    "processedText": "— _— y Py — Poco, 200000880 203354, Becortó esta 16 e o elíquero E * í e pos \"eje seg Í |. E 1 o As Ue Love Sillcona paro Samsung í y : Olor: RED, E. 7 H : a Nombre, de mm H : nidag H Enrique Jose Torres Mago 507347055 s E N Calle Paraguay 4353 Palermo cp 1425 Pack ip. O0008R0 20 Envio; “536169807 En i L Elia Pa Y 7 mA CP:1778 “E Le E : LA MATANZA sp A TES CIUDAD EvrrA Y “a e “E PAT A | || Direccion: Calle el Ruiseñor 4081 Referencia: Pp a Referencia: Planta Baja A | | Re: : | Barrio: ; 552 tinatario: Valeria Coria (COVa76s > Desi",
+    "confidence": 56,
+    "processingTimeMs": 940,
+    "extractedFields": {
+      "numeroEnvio": null,
+      "numeroPaquete": null,
+      "destinatario": null,
+      "direccion": null,
+      "codigoPostal": "1425",
+      "localidad": null,
+      "fechaEntrega": null,
+      "tipoEnvio": null,
+      "referencias": null
+    },
+    "extractedFieldsCount": 1,
+    "originalLines": 29,
+    "processedLines": 1
+  },
+  "optimized": {
+    "rawText": "Destinatario:Valeria Coria (COVA768552,\n\n",
+    "processedText": "Destinatario:Valeria Coria (COVA768552,",
+    "confidence": 57,
+    "processingTimeMs": 249,
+    "extractedFields": {
+      "numeroEnvio": null,
+      "numeroPaquete": null,
+      "destinatario": null,
+      "direccion": null,
+      "codigoPostal": null,
+      "localidad": null,
+      "fechaEntrega": null,
+      "tipoEnvio": null,
+      "referencias": null
+    },
+    "extractedFieldsCount": 0,
+    "originalLines": 3,
+    "processedLines": 1
+  }
+}

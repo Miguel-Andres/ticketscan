@@ -3,16 +3,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Variables globales */
+/* Variables globales - Tema gris gainsboro profesional y futurista */
 :root {
-  --color-bg: #f8fafc;
-  --color-text: #0f172a;
-  --color-primary: #0ea5e9;
-  --color-primary-dark: #0284c7;
-  --color-secondary: #64748b;
-  --color-accent: #f59e0b;
-  --color-error: #ef4444;
-  --color-success: #10b981;
+  --color-bg: #dcdcdc;
+  --color-bg-secondary: #d3d3d3;
+  --color-bg-tertiary: #c0c0c0;
+  --color-text: #2d3748;
+  --color-text-secondary: #4a5568;
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-light: #60a5fa;
+  --color-secondary: #718096;
+  --color-accent: #06b6d4;
+  --color-accent-secondary: #8b5cf6;
+  --color-error: #e53e3e;
+  --color-success: #38a169;
+  --color-warning: #d69e2e;
+  --color-border: #a0aec0;
+  --color-border-light: #cbd5e0;
 }
 
 /* Estilos base */
@@ -69,10 +77,10 @@ body {
   }
   
   .card {
-    @apply bg-white rounded-lg shadow-md p-4;
+    @apply bg-gray-200 border border-gray-300 rounded-lg shadow-lg p-4;
   }
   
   .input {
-    @apply border border-secondary-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary-500;
+    @apply bg-white border border-gray-400 text-gray-800 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
   }
 }

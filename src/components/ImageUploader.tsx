@@ -6,6 +6,7 @@ import { ImageModal } from './ImageUploader/ImageModal';
 import { ImageModalProvider, useImageModal } from './ImageUploader/ImageModalContext';
 import useImageUpload from './ImageUploader/hooks/useImageUpload';
 import useOcrProcessing from './ImageUploader/hooks/useOcrProcessing';
+import { useOcrRetry } from './ImageUploader/hooks/useOcrRetry';
 
 // Componente interno que usa el contexto del modal
 const ImageUploaderContent: React.FC = () => {
@@ -27,6 +28,8 @@ const ImageUploaderContent: React.FC = () => {
     setImages,
     setIsProcessing
   });
+
+  const { retryOCR } = useOcrRetry(images, setImages);
 
   const { isOpen, currentImage, closeModal, goToPrevious, goToNext, hasPrevious, hasNext } = useImageModal();
 
@@ -58,6 +61,7 @@ const ImageUploaderContent: React.FC = () => {
           <ImageList
             images={images}
             removeImage={removeImage}
+            retryOCR={retryOCR}
           />
         </div>
       </div>

@@ -17,12 +17,8 @@ export class WorkerPool {
       return this.pool.pop();
     }
     
-    // Crear worker con configuración optimizada para Tesseract.js v5
-    // @ts-ignore - Ignoramos errores de tipado ya que la documentación y los tipos no coinciden completamente
+    // Crear worker con configuración básica
     const worker = await createWorker(CONFIG.TESSERACT_LANGUAGE);
-    
-    // Aplicar parámetros de inicialización optimizados
-    await worker.setParameters(getTesseractInitParams());
     
     return worker;
   }

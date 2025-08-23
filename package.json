@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test": "node test-ocr-simple.js",
+    "test:real": "node test-ocr-real.js"
   },
   "keywords": [
     "ocr",
@@ -19,7 +21,7 @@
     "@astrojs/node": "8.2.0",
     "@astrojs/react": "3.0.10",
     "astro": "4.5.0",
-    "canvas": "^3.1.2",
+    "canvas": "3.1.2",
     "formidable": "3.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -33,7 +35,7 @@
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.9.2"
   },
   "author": "",
   "license": "MIT"

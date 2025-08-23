@@ -6,9 +6,10 @@ import { MAX_FILES } from '../../utils/constants';
 interface ImageListProps {
   images: UploadedImage[];
   removeImage: (id: string) => void;
+  retryOCR?: (id: string, options?: 'basic' | 'advanced') => void;
 }
 
-const ImageList: React.FC<ImageListProps> = ({ images, removeImage }) => {
+const ImageList: React.FC<ImageListProps> = ({ images, removeImage, retryOCR }) => {
   return (
     <div>
       <h3 className="text-lg font-semibold mb-4">Imágenes cargadas ({images.length}/{MAX_FILES})</h3>
@@ -23,6 +24,7 @@ const ImageList: React.FC<ImageListProps> = ({ images, removeImage }) => {
               key={image.id} 
               image={image} 
               removeImage={removeImage}
+              retryOCR={retryOCR}
               allImages={images}
             />
           ))}

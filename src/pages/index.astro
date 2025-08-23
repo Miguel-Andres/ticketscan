@@ -16,43 +16,43 @@ import '../styles/global.css';
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body class="font-manrope">
+<body class="font-manrope bg-gray-300 text-gray-800">
   <Header />
 
   <main class="container mx-auto px-4 py-14 md:py-18">
-    <section class="max-w-6xl mx-auto mb-10">
-      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary-50 to-white border border-primary-100 p-6 md:p-10 text-center">
+    <section class="max-w-6xl mx-auto mb-10 mt-8">
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-gray-100/80 to-gray-200/80 backdrop-blur-sm shadow-2xl p-6 md:p-10 text-center">
         <!-- Iconos decorativos alrededor del título -->
-        <span class="pointer-events-none absolute -top-2 -left-2 md:-top-4 md:-left-4 h-20 w-20 md:h-24 md:w-24 rounded-2xl bg-white/80 shadow-2xl backdrop-blur flex items-center justify-center rotate-[-6deg]">
+        <span class="pointer-events-none absolute -top-2 -left-2 md:-top-4 md:-left-4 h-20 w-20 md:h-24 md:w-24 rounded-2xl bg-white/90 shadow-2xl backdrop-blur flex items-center justify-center rotate-[-6deg]">
           <!-- PDF -->
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-12 w-12 text-rose-500"><path fill="currentColor" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm0 2.5L18.5 9H14zM7.5 14h2a1.5 1.5 0 0 1 0 3h-2zM12 14h1.25a1.25 1.25 0 1 1 0 2.5H12zm3.5 0H18v.75h-1.25v.5H18V16H15.5zM9.5 15H9v1h.5a.5.5 0 0 0 0-1M12 15.75h.75a.25.25 0 0 0 0-.5H12z"/></svg>
         </span>
-        <span class="pointer-events-none absolute -bottom-4 left-4 md:-bottom-6 md:left-10 h-20 w-20 md:h-24 md:w-24 rounded-2xl bg-white/80 shadow-2xl backdrop-blur flex items-center justify-center rotate-[8deg]">
+        <span class="pointer-events-none absolute -bottom-4 left-4 md:-bottom-6 md:left-10 h-20 w-20 md:h-24 md:w-24 rounded-2xl bg-white/90 shadow-2xl backdrop-blur flex items-center justify-center rotate-[8deg]">
           <!-- Email -->
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-12 w-12 text-primary-500"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m0 4l-8 5L4 8V6l8 5l8-5z"/></svg>
         </span>
-        <span class="pointer-events-none absolute -top-4 -right-2 md:-top-6 md:right-8 h-20 w-20 md:h-24 md:w-24 rounded-2xl bg-white/80 shadow-2xl backdrop-blur flex items-center justify-center rotate-[6deg]">
+        <span class="pointer-events-none absolute -top-4 -right-2 md:-top-6 md:right-8 h-20 w-20 md:h-24 md:w-24 rounded-2xl bg-white/90 shadow-2xl backdrop-blur flex items-center justify-center rotate-[6deg]">
           <!-- WhatsApp -->
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-12 w-12 text-green-500"><path fill="currentColor" d="M12.04 2a9.94 9.94 0 0 0-8.5 15.2L2 22l4.9-1.28A10 10 0 1 0 12.04 2m5.91 14.25c-.25.7-1.46 1.33-2.02 1.35c-.54.05-1.22.18-4.15-.86c-3.5-1.37-5.76-4.72-5.94-4.95c-.17-.23-1.42-1.9-1.42-3.63s.9-2.57 1.22-2.93c.31-.36.68-.45.91-.45h.65c.2 0 .49-.08.77.59c.28.67.95 2.3 1.03 2.47c.08.18.12.39.02.62c-.1.23-.15.37-.31.57c-.16.21-.33.46-.47.62c-.15.16-.3.33-.13.64c.17.31.76 1.25 1.62 2.02c1.12.99 2.07 1.3 2.38 1.46c.31.16.5.13.69-.08c.2-.21.79-.92 1-1.24c.21-.31.44-.26.74-.16c.3.1 1.9.9 2.23 1.06c.33.16.55.24.63.38c.08.14.08.79-.17 1.49"/></svg>
         </span>
-        <span class="pointer-events-none absolute -bottom-2 -right-4 md:-bottom-4 md:-right-6 h-20 w-20 md:h-24 md:w-24 rounded-2xl bg-white/80 shadow-2xl backdrop-blur flex items-center justify-center rotate-[-4deg]">
+        <span class="pointer-events-none absolute -bottom-2 -right-4 md:-bottom-4 md:-right-6 h-20 w-20 md:h-24 md:w-24 rounded-2xl bg-white/90 shadow-2xl backdrop-blur flex items-center justify-center rotate-[-4deg]">
           <!-- Envío / Truck -->
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-12 w-12 text-amber-500"><path fill="currentColor" d="M18 8h3l3 4v6h-2a3 3 0 0 1-6 0H9a3 3 0 0 1-6 0H2V6a2 2 0 0 1 2-2h12zM6 19a1 1 0 1 0 1-1a1 1 0 0 0-1 1m12 0a1 1 0 1 0 1-1a1 1 0 0 0-1 1m1-6v-2h2l1.5 2z"/></svg>
         </span>
 
-        <h1 class="relative z-10 text-4xl md:text-5xl font-extrabold tracking-tight text-secondary-800 mb-3 font-bebas">
+        <h1 class="relative z-10 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800 mb-3 font-bebas">
           Escanea tus fotos y acelera tus reportes de cobro
         </h1>
         <!-- Línea estilo tachado -->
-        <p class="relative z-10 text-base md:text-lg text-secondary-500 max-w-3xl mx-auto font-inter mb-2">
+        <p class="relative z-10 text-base md:text-lg text-gray-600 max-w-3xl mx-auto font-inter mb-2">
           <span class="line-through decoration-rose-400 decoration-2 text-lg md:text-xl font-semibold">Procesos lentos y manuales.</span>
-          <span class="ml-2 text-secondary-700">Resultados hoy.</span>
+          <span class="ml-2 text-gray-700">Resultados hoy.</span>
         </p>
-        <p class="relative z-10 text-lg md:text-xl text-secondary-600 max-w-3xl mx-auto font-inter">
+        <p class="relative z-10 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-inter">
           Sube hasta 50 imágenes, extrae el texto de tus etiquetas  y organiza la información clave para tu gestión de cobros.
         </p>
         <!-- Badge de clientes/actividad -->
-        <div class="relative z-10 mt-6 inline-flex items-center gap-2 rounded-full bg-secondary-100 px-4 py-2 text-secondary-700 shadow">
+        <div class="relative z-10 mt-6 inline-flex items-center gap-2 rounded-full bg-gray-400/30 px-4 py-2 text-gray-700 shadow">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 text-emerald-600" aria-hidden="true"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg>
           <span class="font-medium">1500 reportes semanales</span>
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 text-rose-500"><path fill="currentColor" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm0 2.5L18.5 9H14zM7.5 14h2a1.5 1.5 0 0 1 0 3h-2zM12 14h1.25a1.25 1.25 0 1 1 0 2.5H12zm3.5 0H18v.75h-1.25v.5H18V16H15.5zM9.5 15H9v1h.5a.5.5 0 0 0 0-1M12 15.75h.75a.25.25 0 0 0 0-.5H12z"/></svg>
@@ -66,8 +66,8 @@ import '../styles/global.css';
     </section>
   </main>
 
-  <footer class="bg-white border-t mt-16 py-8">
-    <div class="container mx-auto px-4 text-center text-secondary-600">
+  <footer class="bg-gray-300/80 backdrop-blur-sm shadow-2xl mt-16 py-8">
+    <div class="container mx-auto px-4 text-center text-gray-600">
       <p>&copy; 2024 UrbanCityLogistics — Plataforma de Reportes de cobro para empresas</p>
     </div>
   </footer>

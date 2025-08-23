@@ -66,18 +66,39 @@
   - [x] 6.3 Asegurar liberación de buffers/streams temporales; sin persistencia en disco
   - [x] 6.4 Añadir manejo de timeout/abort para evitar solicitudes colgadas
 
-- [ ] 7.0 QA local con ~30–50 imágenes y captura de métricas; ajustes de rendimiento
-  - [ ] 7.1 Preparar un set de imágenes de etiquetas (calidad variada)
-  - [ ] 7.2 Medir tiempo de proceso y tasa de éxito; anotar observaciones de precisión
-  - [ ] 7.3 Ajustar concurrencia y uso de memoria si es necesario; verificar estabilidad
-  - [ ] 7.4 Corregir bugs encontrados; re-probar hasta estabilizar
+- [x] 7.0 QA local con ~30–50 imágenes y captura de métricas; ajustes de rendimiento
+  - [x] 7.1 Preparar un set de imágenes de etiquetas (calidad variada)
+  - [x] 7.2 Medir tiempo de proceso y tasa de éxito; anotar observaciones de precisión
+  - [x] 7.3 Ajustar concurrencia y uso de memoria si es necesario; verificar estabilidad
+  - [x] 7.4 Corregir bugs encontrados; re-probar hasta estabilizar
 
-- [ ] 8.0 Reintento OCR con pipeline alternativo
-  - [ ] 8.1 Crear endpoint `/api/ocr/retry` que acepte imagen individual y parámetros
-  - [ ] 8.2 Implementar pipeline alternativo de preprocesamiento (PSM 6, whitelist ajustada)
-  - [ ] 8.3 Comparar confianza entre resultado original y reintento; devolver mejor
-  - [ ] 8.4 Agregar botón "Reintentar" por imagen en ImageItem.tsx
-  - [ ] 8.5 Manejar estado de reintento (loading, merge de resultados)
+- [x] 8.0 Reintento OCR con pipeline alternativo optimizado para etiquetas de envío
+  - [x] 8.1 Crear endpoint `/api/ocr/retry` que acepte imagen individual y parámetros
+    - [x] 8.1.1 Definir interfaz para parámetros de reintento (ROIs, PSM, whitelist, etc.)
+    - [x] 8.1.2 Implementar validación de parámetros y manejo de errores
+  - [x] 8.2 Implementar pipeline alternativo de preprocesamiento avanzado
+    - [x] 8.2.1 Mejorar `imageProcessing.ts` con deskew automático y binarización adaptativa
+    - [x] 8.2.2 Añadir upscaling (1.5-2x) para textos pequeños y normalización de contraste
+    - [x] 8.2.3 Implementar filtros de despeckle y sharpening suave
+  - [x] 8.3 Implementar procesamiento por ROIs (Regions of Interest)
+    - [x] 8.3.1 Crear función para detectar/definir ROIs para campos específicos (IDs, CP, direcciones)
+    - [x] 8.3.2 Configurar PSM específico por tipo de campo (7 para IDs/CP, 6/4 para direcciones, 11 para texto disperso)
+    - [x] 8.3.3 Aplicar whitelist/blacklist por tipo de campo (numérico para IDs/CP, alfanumérico para direcciones)
+  - [x] 8.4 Implementar soporte multi-idioma y optimización LSTM
+    - [x] 8.4.1 Configurar worker con `lang: 'spa'` y `oem: 1` (LSTM)
+    - [x] 8.4.2 Crear patrones de usuario para formatos específicos (IDs, CP, fechas)
+  - [x] 8.5 Comparar confianza entre resultado original y reintento; devolver mejor
+    - [x] 8.5.1 Implementar métricas de confianza por campo y global
+    - [x] 8.5.2 Crear lógica de fusión para seleccionar mejor resultado
+  - [x] 8.6 Agregar botón "Reintentar" por imagen en ImageItem.tsx
+    - [x] 8.6.1 Diseñar UI para mostrar opciones de reintento (básico/avanzado)
+    - [x] 8.6.2 Implementar llamada al endpoint `/api/ocr/retry`
+  - [x] 8.7 Manejar estado de reintento (loading, merge de resultados)
+    - [x] 8.7.1 Actualizar modelo de datos para almacenar resultados originales y de reintento
+    - [x] 8.7.2 Implementar UI para comparar resultados antes/después
+  - [x] 8.8 Validación post-OCR para campos específicos
+    - [x] 8.8.1 Implementar validadores regex para IDs, CP y otros campos estructurados
+    - [x] 8.8.2 Crear corrección automática para errores comunes (O vs 0, I vs 1, etc.)
 
 - [x] 9.0 Modal de visualización de imagen completa
   - [x] 9.1 Crear componente ImageModal.tsx con React Portal
@@ -86,11 +107,11 @@
   - [x] 9.4 Estilos responsive para modal (overlay, imagen centrada, botón cerrar)
   - [x] 9.5 Navegación entre imágenes con teclado (opcional)
 
-- [ ] 10.0 Documentación: README guía rápida, configuración y uso
-  - [ ] 10.1 Escribir `README.md` con pasos de instalación y comandos
-  - [ ] 10.2 Documentar cómo ejecutar la app, subir imágenes e interpretar resultados
-  - [ ] 10.3 Listar restricciones (sin PDF, sin persistencia) y próximos pasos planeados (Fase 2)
-  - [ ] 10.4 Añadir sección de resolución de problemas (issues comunes de OCR, consejos de rendimiento)
+- [x] 10.0 Documentación: README guía rápida, configuración y uso
+  - [x] 10.1 Escribir `README.md` con pasos de instalación y comandos
+  - [x] 10.2 Documentar cómo ejecutar la app, subir imágenes e interpretar resultados
+  - [x] 10.3 Listar restricciones (sin PDF, sin persistencia) y próximos pasos planeados (Fase 2)
+  - [x] 10.4 Añadir sección de resolución de problemas (issues comunes de OCR, consejos de rendimiento)
 
 - [ ] 11.0 Interpretación IA de texto OCR (Opción B1 - Tesseract + OpenAI)
   - [ ] 11.1 Configurar integración con OpenAI API (variables de entorno, cliente)

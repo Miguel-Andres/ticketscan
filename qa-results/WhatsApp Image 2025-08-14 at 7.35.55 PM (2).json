@@ -1,0 +1,42 @@
+{
+  "default": {
+    "rawText": "— -\n¡— Ne\n| Venta 0: 2000012613501138. E e H\nf 4 Earn\nL ; j: Note 13 Pro 4g í\n! ji 1 Combre del diseño: HEART LOVE | E\ny y Color: RED WINE - BROWN |\n' h Unidad i\nlam “—> H\n>= | << Enrique Jose Torres Mago 4507347955 |\nCalle Paraguay 4353\ny NS Palermo CP 1425\n— Venta: 200001261350113g Envio: 45317080459\ne\nE. j PT\nE 4 [=]; A 4D\nEr ) a Sd\nE PIE CP: 2804\nE PE tr a\n* AR CAMPANA\n| ma a 8 CAMPANA OTAMEND|\n| ra =\nERA\n|\nRESIDENCIAL\n|\nE | Direccion: Barriola 508\n|\n| Reenc: Entre: Pellegrin Entre la plumo\nOi ; | sant:\nf | |\nÉ y | ter R\n| | | Destinatario: Lucía Ester Rojas Lopez (ROLU7733602)\nÁ NN\n| -\nx ,\n| y\n,\n",
+    "processedText": "— - ¡— Ne | Venta 0: 2000012613501138. E e H f 4 Earn L ; j: Note 13 Pro 4g í ! ji 1 Combre del diseño: HEART LOVE | E y y Color: RED WINE - BROWN | ' h Unidad i lam “—> H >= | << Enrique Jose Torres Mago 4507347955 | Calle Paraguay 4353 y NS Palermo CP 1425 — Venta: 200001261350113g Envio: 45317080459 e E. j PT E 4 [=]; A 4D Er ) a Sd E PIE CP: 2804 E PE tr a * AR CAMPANA | ma a 8 CAMPANA OTAMEND| | ra = ERA | RESIDENCIAL | E | Direccion: Barriola 508 | | Reenc: Entre: Pellegrin Entre la plumo Oi ; | sant: f | | É y | ter R | | | Destinatario: Lucía Ester Rojas Lopez (ROLU7733602) Á NN | - x , | y ,",
+    "confidence": 56,
+    "processingTimeMs": 1134,
+    "extractedFields": {
+      "numeroEnvio": null,
+      "numeroPaquete": null,
+      "destinatario": null,
+      "direccion": null,
+      "codigoPostal": "1425",
+      "localidad": null,
+      "fechaEntrega": null,
+      "tipoEnvio": null,
+      "referencias": null
+    },
+    "extractedFieldsCount": 1,
+    "originalLines": 39,
+    "processedLines": 1
+  },
+  "optimized": {
+    "rawText": "A a 1tóestapartedelaetiquetapara\nVenta1D:2000012613501138 e viajeseguro,\n\nOFundaHeartLoveSiliconaPara_Xioam Redmí\n\nNote13Pro4g\nNombredeldiseño:HEART LOVE\n\nColor:REDWINE-BROWN\n\nEntiqueJoseTorresMago 4507347955\nCalleParaguay4353\n\nPalemocP1425\n\nVenta: 200001261350113g Envio:45317080459\n\nCP:2804\n\nCAMPANA\nCAMPANA OTAMENDj\n\nl Direccion:Barriola 508\n\nY Referencia:Entre: Pellegrini\n\nEntrela Plume\n\nYBarro:\n\n",
+    "processedText": "A a 1tóestapartedelaetiquetapara Venta1D:2000012613501138 e viajeseguro, OFundaHeartLoveSiliconaPara_Xioam Redmí Note13Pro4g Nombredeldiseño:HEART LOVE Color:REDWINE-BROWN EntiqueJoseTorresMago 4507347955 CalleParaguay4353 PalemocP1425 Venta: 200001261350113g Envio:45317080459 CP:2804 CAMPANA CAMPANA OTAMENDj l Direccion:Barriola 508 Y Referencia:Entre: Pellegrini Entrela Plume YBarro:",
+    "confidence": 53,
+    "processingTimeMs": 618,
+    "extractedFields": {
+      "numeroEnvio": null,
+      "numeroPaquete": null,
+      "destinatario": null,
+      "direccion": null,
+      "codigoPostal": "1425",
+      "localidad": null,
+      "fechaEntrega": null,
+      "tipoEnvio": null,
+      "referencias": null
+    },
+    "extractedFieldsCount": 1,
+    "originalLines": 31,
+    "processedLines": 1
+  }
+}

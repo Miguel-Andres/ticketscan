@@ -1,0 +1,42 @@
+{
+  "default": {
+    "rawText": "E\n—\no... Za. o 0 E\n1 peer = E - — compara A\nl E |\n¡ 1 E neo HEART LOVE h\n= E << —_-.\nE—=— ENRIQUE JOSE TORRES MAGO 1507347955 Y\n== Calle Paraguay 4353 y\npalermo CP1425 |\npack 1D: 000008799912497 Envio: 45215245115 |\ny y\n| Envío Flex\nEntrega: 11-Ago. |\n|\n| TA A cP:1814\n| TA » CAÑUELAS\n| e\" Ea : CAÑUELAS\n| 2 EE io L\nale\nCOMERCIAL |\npireccion: Calle pellegrini Y ruta 3. Cañuelas SN |\ngeferencia: Fabrica Canuelas pak Referencia: Fabrica |\n| canueles pak Entre: ruta 3 |\nY |\ngarrio |\nrio: Jonatan Carlos Medrano (SAYA9664175) |\n| pesina” y y\nY\n",
+    "processedText": "E — o... Za. o 0 E 1 peer = E - — compara A l E | ¡ 1 E neo HEART LOVE h = E << —_-. E—=— ENRIQUE JOSE TORRES MAGO 1507347955 Y == Calle Paraguay 4353 y palermo CP1425 | pack 1D: 000008799912497 Envio: 45215245115 | y y | Envío Flex Entrega: 11-Ago. | | | TA A cP:1814 | TA » CAÑUELAS | e\" Ea : CAÑUELAS | 2 EE io L ale COMERCIAL | pireccion: Calle pellegrini Y ruta 3. Cañuelas SN | geferencia: Fabrica Canuelas pak Referencia: Fabrica | | canueles pak Entre: ruta 3 | Y | garrio | rio: Jonatan Carlos Medrano (SAYA9664175) | | pesina” y y Y",
+    "confidence": 59,
+    "processingTimeMs": 1085,
+    "extractedFields": {
+      "numeroEnvio": null,
+      "numeroPaquete": null,
+      "destinatario": null,
+      "direccion": null,
+      "codigoPostal": "1425",
+      "localidad": null,
+      "fechaEntrega": null,
+      "tipoEnvio": null,
+      "referencias": null
+    },
+    "extractedFieldsCount": 1,
+    "originalLines": 30,
+    "processedLines": 1
+  },
+  "optimized": {
+    "rawText": "Zero4\nZojor:RE D\nCombrederaN\n\n\"ORRESMAGO 1507347955\n\nENRIQUEJOSET'\nCalleParaguay4353\n\npalermo.CP1425\nPpack1D: 000008799912497 Envio: 45315245115 Y\n\nl EnvíoFlex\nEntrega: 11-Ago.\n\ncp:1814\n\n",
+    "processedText": "Zero4 Zojor:RE D CombrederaN \"ORRESMAGO 1507347955 ENRIQUEJOSET' CalleParaguay4353 palermo.CP1425 Ppack1D: 000008799912497 Envio: 45315245115 Y l EnvíoFlex Entrega: 11-Ago. cp:1814",
+    "confidence": 63,
+    "processingTimeMs": 440,
+    "extractedFields": {
+      "numeroEnvio": null,
+      "numeroPaquete": null,
+      "destinatario": null,
+      "direccion": null,
+      "codigoPostal": "1425",
+      "localidad": null,
+      "fechaEntrega": null,
+      "tipoEnvio": null,
+      "referencias": null
+    },
+    "extractedFieldsCount": 1,
+    "originalLines": 18,
+    "processedLines": 1
+  }
+}

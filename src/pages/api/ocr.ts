@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { 
   OCRProcessor, 
-  validateFile, 
+  validateServerFile, 
   createTempFile, 
   cleanupFiles,
   CONFIG
@@ -30,7 +30,7 @@ export const POST: APIRoute = async ({ request }) => {
     
     // Filtrar archivos válidos
     for (const [key, value] of formData.entries()) {
-      if (key === 'images' && value instanceof File && validateFile(value)) {
+      if (key === 'images' && value instanceof File && validateServerFile(value)) {
         validFiles.push(value);
       }
     }
@@ -57,7 +57,7 @@ export const POST: APIRoute = async ({ request }) => {
       const processor = new OCRProcessor();
       
       // Procesar imágenes
-      const result = await processor.processImagesBatch(tempFiles);
+      const result = await processor.processBatch(tempFiles);
       
       return new Response(
         JSON.stringify(result),

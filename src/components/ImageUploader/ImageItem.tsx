@@ -5,10 +5,11 @@ import { useImageModal } from './ImageModalContext';
 interface ImageItemProps {
   image: UploadedImage;
   removeImage: (id: string) => void;
+  retryOCR?: (id: string, options?: 'basic' | 'advanced') => void;
   allImages?: UploadedImage[];
 }
 
-const ImageItem: React.FC<ImageItemProps> = ({ image, removeImage, allImages = [] }) => {
+const ImageItem: React.FC<ImageItemProps> = ({ image, removeImage, retryOCR, allImages = [] }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { openModal } = useImageModal();
   
@@ -94,6 +95,19 @@ const ImageItem: React.FC<ImageItemProps> = ({ image, removeImage, allImages = [
               </div>
             </div>
           )}
+          {image.status === 'retrying' && (
+            <div>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800 mb-2">
+                Reintentando OCR...
+              </span>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div 
+                  className="bg-orange-600 h-2 rounded-full transition-all duration-300 animate-pulse"
+                  style={{ width: `${image.progress}%` }}
+                ></div>
+              </div>
+            </div>
+          )}
           {image.status === 'completed' && (
             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
               Completado
@@ -112,21 +126,52 @@ const ImageItem: React.FC<ImageItemProps> = ({ image, removeImage, allImages = [
             <div className="flex justify-between items-start mb-2">
               <h5 className="font-medium text-green-800">
                 Texto extraído (Confianza: {(image.result.confidence * 100).toFixed(1)}%)
+                {image.result.confidenceImprovement && image.result.confidenceImprovement > 0 && (
+                  <span className="ml-2 text-xs text-blue-600">
+                    (+{image.result.confidenceImprovement.toFixed(1)}% mejora)
+                  </span>
+                )}
               </h5>
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(image.result?.text || '');
-                  alert('Texto copiado al portapapeles');
-                }}
-                className="text-green-700 hover:text-green-900 p-1 flex items-center text-xs"
-                title="Copiar al portapapeles"
-              >
-                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
-                  <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
-                </svg>
-                Copiar
-              </button>
+              <div className="flex gap-2">
+                {retryOCR && image.status === 'completed' && (
+                  <div className="flex gap-1">
+                    <button
+                      onClick={() => retryOCR(image.id, 'basic')}
+                      className="text-blue-600 hover:text-blue-800 p-1 flex items-center text-xs"
+                      title="Reintentar OCR con configuración básica"
+                    >
+                      <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+                      </svg>
+                      Reintentar
+                    </button>
+                    <button
+                      onClick={() => retryOCR(image.id, 'advanced')}
+                      className="text-purple-600 hover:text-purple-800 p-1 flex items-center text-xs"
+                      title="Reintentar OCR con configuración avanzada"
+                    >
+                      <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM15 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4z" />
+                      </svg>
+                      Avanzado
+                    </button>
+                  </div>
+                )}
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(image.result?.text || '');
+                    alert('Texto copiado al portapapeles');
+                  }}
+                  className="text-green-700 hover:text-green-900 p-1 flex items-center text-xs"
+                  title="Copiar al portapapeles"
+                >
+                  <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
+                    <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
+                  </svg>
+                  Copiar
+                </button>
+              </div>
             </div>
             <div className="relative">
               <p className="text-sm text-green-700 whitespace-pre-wrap overflow-hidden transition-all duration-300"
